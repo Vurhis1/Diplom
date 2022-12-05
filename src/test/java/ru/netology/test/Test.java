@@ -48,7 +48,7 @@ public class Test {
         var salesPage = new SalesPage();
         var declinedCard = DataHelper.getDeclinedCard();
         var buyPage = salesPage.getBuyPage();
-        buyPage.shouldNotification(declinedCard, "Операция одобрена банком.");
+        buyPage.shouldNotification(declinedCard, "Ошибка! Банк отказал в проведении операции.");
         assertEquals(DataBaseHelper.getStatus(), "DECLINED");
     }
 
