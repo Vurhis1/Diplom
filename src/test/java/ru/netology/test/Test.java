@@ -12,7 +12,7 @@ import ru.netology.page.SalesPage;
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class Test {
+public class TestOfPaymentCard {
 
     @BeforeAll
     static void setUpAll() {
