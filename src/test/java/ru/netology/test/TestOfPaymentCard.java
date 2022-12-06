@@ -34,7 +34,7 @@ public class TestOfPaymentCard {
         DataBaseHelper.cleanAll();
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void shouldSuccessBuyOfApprovedCard() {
         var salesPage = new SalesPage();
         var approvedCard = DataHelper.getApprovedCard();
@@ -43,16 +43,16 @@ public class TestOfPaymentCard {
         assertEquals(DataBaseHelper.getStatus(), "APPROVED");
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void shouldSuccessBuyDeclinedCard() {
         var salesPage = new SalesPage();
         var declinedCard = DataHelper.getDeclinedCard();
         var buyPage = salesPage.getBuyPage();
-        buyPage.shouldNotification(declinedCard, "Операция одобрена банком.");
+        buyPage.shouldNotification(declinedCard, "Ошибка! Банк отказал в проведении операции.");
         assertEquals(DataBaseHelper.getStatus(), "DECLINED");
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void allFieldsAreEmpty() {
         var salesPage = new SalesPage();
         var emptyCard = DataHelper.getEmptyCard();
@@ -65,7 +65,7 @@ public class TestOfPaymentCard {
         buyPage.getCVCError("Неверный формат");
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void randomCardNumber() {
         var salesPage = new SalesPage();
         var randomCardNumber = DataHelper.getRandomCardNumber();
@@ -93,6 +93,7 @@ public class TestOfPaymentCard {
     @CsvSource({
             "Неверный формат, ",                                      //пустое поле
             "Неверно указан срок действия карты, 00",                 //00
+            "Неверно указан срок действия карты, 13",                 //13
             "Неверный формат, 0",                                     //1 цифра
             "Неверно указан срок действия карты, 11"                  //Прошлый месяц от текущей даты
     })
@@ -157,7 +158,7 @@ public class TestOfPaymentCard {
         buyPage.getOwnerError(expected);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void shouldFieldOfOwnerWith64Characters() {
         var salesPage = new SalesPage();
         var approvedCard = DataHelper.getApprovedCard();
